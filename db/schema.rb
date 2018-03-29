@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "name"
+    t.string "name"
     t.integer "age"
     t.boolean "employed"
   end

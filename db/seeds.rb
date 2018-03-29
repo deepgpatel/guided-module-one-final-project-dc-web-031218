@@ -1,8 +1,11 @@
 # require_relative "../lib"
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> user-consoles
 bruno = User.create(name: "Bruno", age: 5, employed: false)
 deep = User.create(name: "Deep", age: 12, employed: false)
 max = User.create(name: "Max", age: 17, employed: false)

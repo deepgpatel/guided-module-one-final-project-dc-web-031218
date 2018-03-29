@@ -1,2 +1,6 @@
-require_relative 'config/environment'
+require_relative '../config/environment'
 
+
+bruno = User.first
+# binding.pry
+puts User.with_console("PC")
