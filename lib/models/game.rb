@@ -4,13 +4,22 @@ class Game < ActiveRecord::Base
   has_many :users, through: :game_users
 
   def self.games_without_users(n = 0) # for seeding diagnostic purposes
+    puts Game.all.select{|game| game.users.size <= n }.size
     Game.all.select{|game| game.users.size <= n }
   end
 
   def user_employment
     # percentage of users that own this game that are employed
-
+    output_array = {}
+    instances_array = collect_all_instances_with_this_title
     #use private method, to add in for all consoles
+    instances_array.each do |game_on_console|
+      if game_on_console # if not nil
+        game_on_console_not_nil_2_user_employment(game_on_console, output_hash)
+      end
+    end
+
+    output_hash
   end
 
   def user_unemployment
@@ -28,7 +37,7 @@ class Game < ActiveRecord::Base
 
     instances_array.each do |game_on_console|
       if game_on_console # if not nil
-        game_on_console_not_nil(game_on_console, output_hash)
+        game_on_console_not_nil_1_user_avg_age(game_on_console, output_hash)
       end
     end
 
@@ -52,7 +61,7 @@ class Game < ActiveRecord::Base
     # each instance is of the game on a specific console, and has many users
   end
 
-  def game_on_console_not_nil(game_on_console, hash)
+  def game_on_console_not_nil_1_user_avg_age(game_on_console, hash)
     users = game_on_console.users
     sum_age = 0
     users.each {|user| sum_age += user.age}
@@ -64,4 +73,7 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def game_on_console_not_nil_2_user_employment(game_on_console, hash)
+    users = game_on_console.users
+  end
 end
