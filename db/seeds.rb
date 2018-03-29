@@ -1,4 +1,9 @@
 # require_relative "../lib"
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2b553a5328c5a26120f09a031b2548b850801e0c
 bruno = User.create(name: "Bruno", age: 5, employed: false)
 deep = User.create(name: "Deep", age: 12, employed: false)
 max = User.create(name: "Max", age: 17, employed: false)
@@ -15,6 +20,7 @@ niky = User.create(name: "Niky", age: 34, employed: true)
 andrew = User.create(name: "Andrew", age: 66, employed: true)
 rob = User.create(name: "Rob", age: 78, employed: true)
 
+<<<<<<< HEAD
 wow = Game.create(title: "World of Warcraft", :genre "MMORPG", :console "PC")
 pubg_pc = Game.create(title: "Playerunknown's Battleground", :genre "Action", :console "PC")
 pubg_ps = Game.create(title: "Playerunknown's Battleground", :genre "Action", :console "Playstation 4")
@@ -50,6 +56,35 @@ GameUser.create(user_id: 7, game_id: )
 GameUser.create(user_id: , game_id: )
 GameUser.create(user_id: , game_id: )
 GameUser.create(user_id: , game_id: )
+=======
+wow = Game.create(title: "World of Warcraft", genre: "MMORPG", console: "PC")
+pubg_pc = Game.create(title: "Playerunknown's Battleground", genre: "Action", console: "PC")
+pubg_ps = Game.create(title: "Playerunknown's Battleground", genre: "Action", console: "Playstation 4")
+pubg_xbx = Game.create(title: "Playerunknown's Battleground", genre: "Action", console: "Xbox One")
+fortnite_pc = Game.create(title: "Fortnite" , genre: "Action", console: "PC")
+fortnite_ps = Game.create(title: "Fortnite" , genre: "Action", console: "Playstation 4")
+fortnite_xbx = Game.create(title: "Fortnite" , genre: "Action", console: "Xbox One")
+overwatch_pc = Game.create(title: "Overwatch" , genre: "Action", console: "PC")
+overwatch_ps = Game.create(title: "Overwatch" , genre: "Action", console: "Playstation 4")
+overwatch_xbx = Game.create(title: "Overwatch" , genre: "Action", console: "Xbox One")
+madden_ps = Game.create(title: "Madden 2018" , genre: "Sports", console: "Playstation 4")
+madden_xbx = Game.create(title: "Madden 2018" , genre: "Sports", console: "Xbox One")
+madden_nin = Game.create(title: "Madden 2018" , genre: "Sports", console: "Nintendo")
+nba_ps = Game.create(title: "Nba 2k18" , genre: "Sports", console: "Playstation 4")
+nba_xbx = Game.create(title: "Nba 2k18" , genre: "Sports", console: "Xbox One")
+nba_nin = Game.create(title: "Nba 2k18" , genre: "Sports", console: "Nintendo")
+fifa_ps = Game.create(title: "Fifa 2018" , genre: "Sports", console: "Playstation 4")
+fifa_xbx = Game.create(title: "Fifa 2018" , genre: "Sports", console: "Xbox One")
+fifa_nin = Game.create(title: "Fifa 2018" , genre: "Sports", console: "Nintendo")
+hellokitty_pc = Game.create(title: "Hello Kitty Island Adventure" , genre: "Sports", console: "PC")
+hellokitty_ps = Game.create(title: "Hello Kitty Island Adventure" , genre: "Sports", console: "Playstation 4")
+hellokitty_xbx = Game.create(title: "Hello Kitty Island Adventure" , genre: "Sports", console: "Xbox One")
+hellokitty_nin = Game.create(title: "Hello Kitty Island Adventure" , genre: "Sports", console: "Ninetendo")
+cod_pc = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "PC")
+cod_ps = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Playstation 4")
+cod_xbx = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Xbox One")
+cod_nin = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Nintendo")
+>>>>>>> 2b553a5328c5a26120f09a031b2548b850801e0c
 
 bruno.games.push(wow)
 bruno.save
