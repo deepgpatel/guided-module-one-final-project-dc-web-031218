@@ -40,9 +40,11 @@
        |         todo_name           | in_progress?  | testing?  |  done?  |
        |_____________________________|_______________|___________|_________|
 
-          - db/seeds.rb
-          - rake task that seeds
+          - db/seeds.rb                                               X
+          - rake task that seeds                                      X
+          - custom methods: wave 1
           - scavange the star wars
             api lab
           - scavange the cli
             jukebox lab
+          -
