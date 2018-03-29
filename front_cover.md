@@ -12,7 +12,7 @@
          (auto-generated)      (auto-generated)          (auto-generated)
        - name, string        - user_id, integer        - title, string
        - age, integer          (foreign key)           - genre, string
-       - employed, boolean   - game_id, integer
+       - employed, boolean   - game_id, integer        - console, string
                                (foreign key)
 
        ## a method should go in the class that it returns when called
