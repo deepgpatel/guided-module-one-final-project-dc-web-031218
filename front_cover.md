@@ -22,9 +22,9 @@
         - data analysis
 
         ## user stories:
-         -
-         -
-         -
+         - a user can see what games other users own on the console(s) they own
+         - a user can see what games people in their age group are playing
+         - a game (aka game developer) can produce statistics on its user-base
 
          ## produce git branch
           - git checkout -b <branch>
