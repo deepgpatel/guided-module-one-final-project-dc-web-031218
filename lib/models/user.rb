@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
     all_platform_users = platform_games.map do |game|
       game.users
     end
-    binding.pry
     all_platform_users.flatten.uniq
   end
 
