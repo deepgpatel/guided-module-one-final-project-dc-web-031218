@@ -1,11 +1,8 @@
 # require_relative "../lib"
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> user-consoles
 bruno = User.create(name: "Bruno", age: 5, employed: false)
 deep = User.create(name: "Deep", age: 12, employed: false)
 max = User.create(name: "Max", age: 17, employed: false)
@@ -96,10 +93,10 @@ GameUser.create(game_id: 1, user_id: 1)
 GameUser.create(game_id: 1, user_id: 4)
 GameUser.create(game_id: 2, user_id: 5)
 GameUser.create(game_id: 22, user_id: 1)
-GameUser.create(user_id: 7, game_id: )
-GameUser.create(user_id: 7, game_id: )
-GameUser.create(user_id: 7, game_id: )
-GameUser.create(user_id: 7, game_id: )
-GameUser.create(user_id: , game_id: )
-GameUser.create(user_id: , game_id: )
-GameUser.create(user_id: , game_id: )
+GameUser.create(user_id: 7, game_id: 5 )
+GameUser.create(user_id: 7, game_id: 12)
+GameUser.create(user_id: 7, game_id: 3)
+GameUser.create(user_id: 7, game_id: 14)
+GameUser.create(user_id: 6, game_id: 12)
+GameUser.create(user_id: 9, game_id: 11)
+GameUser.create(user_id: 8, game_id: 10)
