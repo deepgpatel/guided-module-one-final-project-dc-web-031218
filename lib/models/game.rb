@@ -11,14 +11,14 @@ class Game < ActiveRecord::Base
   def user_employment
     # percentage of users that own this game that are employed
     output_hash = {}
+    # use private method, to add in for all consoles
     instances_array = collect_all_instances_with_this_title
-    #use private method, to add in for all consoles
+
     instances_array.each do |game_on_console|
       if game_on_console # if not nil
         game_on_console_not_nil_2_user_employment(game_on_console, output_hash)
       end
     end
-
     output_hash
   end
 
@@ -32,7 +32,6 @@ class Game < ActiveRecord::Base
     #   for each console
     # {console => avg_age}
     output_hash = {}
-
     instances_array = collect_all_instances_with_this_title
 
     instances_array.each do |game_on_console|
@@ -69,7 +68,7 @@ class Game < ActiveRecord::Base
     if users.size == 0
       hash[game_on_console.console] = nil
     else
-      avg_age = sum_age / users.size
+      avg_age = sum_age.to_f / users.size
       hash[game_on_console.console] = avg_age
     end
   end
