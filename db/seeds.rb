@@ -86,5 +86,18 @@ cod_xbx = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Xbo
 cod_nin = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Nintendo")
 >>>>>>> 2b553a5328c5a26120f09a031b2548b850801e0c
 
-bruno.games.push(wow)
-bruno.save
+GameUser.create(game_id: 1, user_id: 1)
+GameUser.create(game_id: 2, user_id: 1)
+GameUser.create(game_id: 1, user_id: 3)
+GameUser.create(game_id: 12, user_id: 4)
+GameUser.create(game_id: 6, user_id: 5)
+GameUser.create(game_id: 11, user_id: 6)
+GameUser.create(game_id: 25, user_id: 4)
+GameUser.create(game_id: 20, user_id: 2)
+GameUser.create(game_id: 22, user_id: 2)
+GameUser.create(game_id: 14, user_id: 3)
+GameUser.create(game_id: 3, user_id: 6)
+GameUser.create(game_id: 1, user_id: 1)
+GameUser.create(game_id: 1, user_id: 4)
+GameUser.create(game_id: 2, user_id: 5)
+GameUser.create(game_id: 22, user_id: 1)
