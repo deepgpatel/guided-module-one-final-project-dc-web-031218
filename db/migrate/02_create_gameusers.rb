@@ -1,4 +1,4 @@
-class CreateGameUsers < ActiveMigration::Migration[5.1]
+class CreateGameusers < ActiveRecord::Migration[5.0]
   def change
     create_table :gameusers do |t|
       t.integer :user_id
