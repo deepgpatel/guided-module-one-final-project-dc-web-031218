@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
 
-has_many :gameuser
-has_many :games, through: :gameuser
+  has_many :game_users
+  has_many :games, through: :game_users
 
 
+  def method_name
+
+  end
 end
