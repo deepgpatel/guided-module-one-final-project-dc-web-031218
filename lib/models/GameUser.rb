@@ -1,16 +1,7 @@
 class GameUser
 
-@@all = []
+belongs_to :game
+belongs_to :user
 
-  def initialize(id=nil, user=nil, game=nil )
-    @id = id
-    @user = user
-    @game = game
-    @@all << self
-  end
-
-  def self.all
-    @@all
-  end
 
 end

@@ -1,16 +1,7 @@
 class User
 
-  @@all = []
-
-  def initialize(name, age, employed, id=nil)
-    @name = name
-  end
-
-  def self.all
-    @@all
-  end
-
-
+has_many :gameuser
+has_many :games, through: :gameuser
 
 
 end
