@@ -43,7 +43,7 @@ cod_ps = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Play
 cod_xbx = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Xbox One")
 cod_nin = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Nintendo")
 
-GameUser.create(user_id: 7, game_id: )
+GameUser.create(user_id: 7, game_id: 6)
 GameUser.create(user_id: 8, game_id:3 )
 GameUser.create(user_id: 9, game_id:4 )
 GameUser.create(user_id: 10, game_id:5 )
