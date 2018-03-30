@@ -4,7 +4,6 @@ class Game < ActiveRecord::Base
   has_many :users, through: :game_users
 
   def self.games_without_users(n = 0) # for seeding diagnostic purposes
-    puts Game.all.select{|game| game.users.size <= n }.size
     Game.all.select{|game| game.users.size <= n }
   end
 
