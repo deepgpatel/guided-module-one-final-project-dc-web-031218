@@ -1,8 +1,5 @@
 # require_relative "../lib"
-
-
-
-
+# Users
 bruno = User.create(name: "Bruno", age: 5, employed: false)
 deep = User.create(name: "Deep", age: 12, employed: false)
 max = User.create(name: "Max", age: 17, employed: false)
@@ -19,9 +16,7 @@ niky = User.create(name: "Niky", age: 34, employed: true)
 andrew = User.create(name: "Andrew", age: 66, employed: true)
 rob = User.create(name: "Rob", age: 78, employed: true)
 
-
-
-
+#Games
 wow = Game.create(title: "World of Warcraft", genre: "MMORPG", console: "PC")
 pubg_pc = Game.create(title: "Playerunknown's Battleground", genre: "Action", console: "PC")
 pubg_ps = Game.create(title: "Playerunknown's Battleground", genre: "Action", console: "Playstation 4")
@@ -44,7 +39,7 @@ fifa_nin = Game.create(title: "Fifa 2018" , genre: "Sports", console: "Nintendo"
 hellokitty_pc = Game.create(title: "Hello Kitty Island Adventure" , genre: "MMORPG", console: "PC")
 hellokitty_ps = Game.create(title: "Hello Kitty Island Adventure" , genre: "MMORPG", console: "Playstation 4")
 hellokitty_xbx = Game.create(title: "Hello Kitty Island Adventure" , genre: "MMORPG", console: "Xbox One")
-hellokitty_nin = Game.create(title: "Hello Kitty Island Adventure" , genre: "MMORPG", console: "Ninetendo")
+hellokitty_nin = Game.create(title: "Hello Kitty Island Adventure" , genre: "MMORPG", console: "Nintendo")
 cod_pc = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "PC")
 cod_ps = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Playstation 4")
 cod_xbx = Game.create(title: "Call of Duty MW2" , genre: "Action", console: "Xbox One")
@@ -76,13 +71,13 @@ bf_nin = Game.create(title: "Battlefield" , genre: "Action", console: "Nintendo"
 pikmin_pc = Game.create(title: "Pikmin" , genre: "Action", console: "PC")
 pikmin_ps = Game.create(title: "Pikmin" , genre: "Action", console: "Playstation 4")
 pikmin_xbx = Game.create(title: "Pikmin" , genre: "Action", console: "Xbox One")
-pikmin_nin = Game.create(title: "Pikmin" , genre: "Action", console: "Ninetendo")
+pikmin_nin = Game.create(title: "Pikmin" , genre: "Action", console: "Nintendo")
 dm_pc = Game.create(title: "DOOM" , genre: "Action", console: "PC")
 dm_ps = Game.create(title: "DOOM" , genre: "Action", console: "Playstation 4")
 dm_xbx = Game.create(title: "DOOM" , genre: "Action", console: "Xbox One")
 dm_nin = Game.create(title: "DOOM" , genre: "Action", console: "Nintendo")
 
-
+# Ids
 GameUser.create(game_id: 1, user_id: 1)
 GameUser.create(game_id: 53, user_id: 1)
 GameUser.create(game_id: 2, user_id: 1)
@@ -233,3 +228,31 @@ GameUser.create(game_id: 10, user_id: 1)
 GameUser.create(game_id: 44, user_id: 1)
 GameUser.create(game_id: 11, user_id: 1)
 GameUser.create(game_id: 43, user_id: 1)
+
+GameUser.create(game_id: 8, user_id: 1)
+GameUser.create(game_id: 46, user_id: 1)
+GameUser.create(game_id: 12, user_id: 1)
+GameUser.create(game_id: 15, user_id: 1)
+GameUser.create(game_id: 37, user_id: 1)
+GameUser.create(game_id: 21, user_id: 1)
+GameUser.create(game_id: 32, user_id: 1)
+GameUser.create(game_id: 26, user_id: 1)
+GameUser.create(game_id: 53, user_id: 1)
+GameUser.create(game_id: 4, user_id: 1)
+GameUser.create(game_id: 49, user_id: 1)
+GameUser.create(game_id: 9, user_id: 1)
+GameUser.create(game_id: 44, user_id: 1)
+
+GameUser.create(game_id: 8, user_id: 2)
+GameUser.create(game_id: 46, user_id: 2)
+GameUser.create(game_id: 12, user_id: 2)
+GameUser.create(game_id: 15, user_id: 2)
+GameUser.create(game_id: 37, user_id: 2)
+GameUser.create(game_id: 21, user_id: 2)
+GameUser.create(game_id: 32, user_id: 2)
+GameUser.create(game_id: 26, user_id: 2)
+GameUser.create(game_id: 53, user_id: 2)
+GameUser.create(game_id: 4, user_id: 2)
+GameUser.create(game_id: 49, user_id: 2)
+GameUser.create(game_id: 9, user_id: 2)
+GameUser.create(game_id: 44, user_id: 2)
