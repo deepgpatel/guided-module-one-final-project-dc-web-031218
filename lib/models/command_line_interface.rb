@@ -1,14 +1,21 @@
-# Instead, let's create a Command Line Interface model in our lib directory.
-# This model won't have a corresponding table, it's just going to be a place
-# for us to write methods relating to the interface of our app. Now, let's
-# move the greet method definition into the Command Line Interface model.
-# require "pry"
-# require_relative "../../bin/run.rb"
-# require_relative "./user.rb"
-# require_relative "./game.rb"
-# require_relative "./game_user.rb"
 
 class CommandLineInterface
+
+  def first_execution
+    welcome
+    main_commands_prompt
+    input = get_user_input
+    input = until_valid_main(input)
+    main_case(input)
+  end
+
+  def iterative_execution
+    main_menu_banner
+    main_commands_prompt
+    input = get_user_input
+    input = until_valid_main(input)
+    main_case(input)
+  end
 
   def welcome
     puts TerminalFormat.full_star_border
@@ -75,10 +82,11 @@ class CommandLineInterface
       end
       puts "#{i + 1}. #{user.name} (#{user.age} y.o., #{employment_status})"
     end
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Command 'Display all users' completed!"
-    puts TerminalFormat.half_star_border
-    true
+    puts TerminalFormat.full_star_border
+
+    iterative_execution
   end
 
   def main2
@@ -101,10 +109,10 @@ class CommandLineInterface
       user_employed = false
     end
     x = User.create(name: user_name, age: user_age, employed: user_employed)
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Task 'Add user' completed!"
-    puts TerminalFormat.half_star_border
-    x
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def main3
@@ -117,10 +125,10 @@ class CommandLineInterface
     input = until_user_name(input)
     target = User.where(name: input)[0]
     User.delete(target.id)
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Task 'Remove user' completed!"
-    puts TerminalFormat.half_star_border
-    target
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def main4
@@ -132,8 +140,6 @@ class CommandLineInterface
     input = get_user_input
     input = until_valid_submain_user(input)
     submain_user_case(input)
-
-
   end
 
   def main5
@@ -144,10 +150,10 @@ class CommandLineInterface
     Game.all.each_with_index do |game, i|
       puts "#{i + 1}. #{game.title} (#{game.genre}, #{game.console})"
     end
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Task 'Display all games' completed!"
-    puts TerminalFormat.half_star_border
-    true
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def main6
@@ -165,10 +171,10 @@ class CommandLineInterface
     game_platform = gets.chomp
     game_platform = until_game_platform(game_platform)
     x = Game.create(title: game_title, genre: game_genre, console: game_platform)
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Task 'Add game' completed!"
-    puts TerminalFormat.half_star_border
-    x
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def main7
@@ -179,15 +185,15 @@ class CommandLineInterface
     print "Exact title of game to be removed:  "
     input_title = gets.chomp
     input_title = until_game_title(input_title)
-    print "Exact name of game platform:  "
+    print "Exact platform:  "
     input_platform = gets.chomp
     input_platform = until_game_platform_specific(input_platform, input_title)
     target = Game.where(title: input_title, console: input_platform)[0]
     Game.delete(target.id)
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Task 'Remove game' completed!"
-    puts TerminalFormat.half_star_border
-    target
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def main8
@@ -199,7 +205,6 @@ class CommandLineInterface
 
     input = get_user_input
     submain_game_case(input)
-      # use until private function
   end
 
   def main9
@@ -269,7 +274,7 @@ class CommandLineInterface
         puts "#{i+1} - #{name}"
       end
       puts TerminalFormat.dash_border
-      print "Exact name of user to be removed:  "
+      print "Exact name of user:  "
       input = gets.chomp
     end
     input
@@ -288,6 +293,7 @@ class CommandLineInterface
         puts "#{i+1} - #{answer}"
       end
       puts TerminalFormat.dash_border
+      input = gets.chomp
     end
     input
   end
@@ -438,7 +444,9 @@ class CommandLineInterface
 
     #call method from user class
     mutual_games = user_1.same_games_as(user_2)
-
+    puts TerminalFormat.dash_border
+    puts "Mutual Games for #{user_input1} and #{user_input2}"
+    puts TerminalFormat.dash_border
     mutual_games.each_with_index do |game, i|
       if i == 0
         puts TerminalFormat.dash_border
@@ -446,10 +454,10 @@ class CommandLineInterface
       puts "#{i + 1} - #{game.title} (#{game.genre}, #{game.console})"
     end
 
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Command 'Display games in common between two users' completed!"
-    puts TerminalFormat.half_star_border
-    true
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def submain_user2
@@ -470,14 +478,14 @@ class CommandLineInterface
       end
       puts "#{i + 1} - #{user.name} (#{user.age} y.o)"
     end
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Command 'Display users for a platform' completed!"
-    puts TerminalFormat.half_star_border
-    true
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def submain_user3
-    return_to_main
+    iterative_execution
   end
 
   def submain_game_case(input)
@@ -519,10 +527,10 @@ class CommandLineInterface
         puts " - #{platform}: no user data"
       end
     end
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Command 'Display a game-community's average age' completed!"
-    puts TerminalFormat.half_star_border
-    true
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def submain_game2
@@ -547,10 +555,10 @@ class CommandLineInterface
         puts " - #{platform}: no user data"
       end
     end
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Command 'Display a game-community's gamer employment' completed!"
-    puts TerminalFormat.half_star_border
-    true
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def submain_game3
@@ -575,26 +583,24 @@ class CommandLineInterface
         puts " - #{platform}: no user data"
       end
     end
-    puts TerminalFormat.half_star_border
+    puts TerminalFormat.full_star_border
     puts "Command 'Display a game-community's gamer unemployment' completed!"
-    puts TerminalFormat.half_star_border
-    true
+    puts TerminalFormat.full_star_border
+    iterative_execution
   end
 
   def submain_game4
-    return_to_main
+    iterative_execution
   end
 
-  def return_to_main
+  def main_menu_banner
     puts TerminalFormat.full_star_border
-    puts TerminalFormat.to_mid + "Main Menu"
+    puts TerminalFormat.to_mid + "    Main Menu"
     puts TerminalFormat.full_star_border
-
-    main_commands_prompt
   end
 
 end
-#
+
 # =========================================
 
 class TerminalFormat
