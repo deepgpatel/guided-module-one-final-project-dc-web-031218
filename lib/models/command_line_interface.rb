@@ -24,7 +24,7 @@ class CommandLineInterface
     game_commands = ["Display all games", "Add game", "Remove game", "Explore game-specific commands"]
     final_command = "Exit program"
 
-    puts "Pleace select a command number:"
+    puts "Please select a command number:"
     puts TerminalFormat.dash_border
     puts "User commands:"
     puts TerminalFormat.under_command
@@ -337,7 +337,7 @@ class CommandLineInterface
   end
 
   def submain_user_commands_prompt
-    user_specific_commands = ["Display games in common between two users", "Display users for a console", "Return"]
+    user_specific_commands = ["Display games in common between two users", "Display users for a platform", "Return"]
 
     puts "Pleace select a command number:"
     puts TerminalFormat.dash_border
@@ -402,9 +402,46 @@ class CommandLineInterface
   end
 
   def submain_user1
+    # Display games in common between two users
+    #get info from user
+    puts TerminalFormat.dash_border
+    print "First user's name:  "
+    user_input1 = gets.chomp
+    user_input1 = until_user_name(user_input1)
+    user_1 = User.where(name: user_input1)[0]
+    puts TerminalFormat.dash_border
+    print "Second user's name:  "
+    user_input2 = gets.chomp
+    user_input2 = until_user_name(user_input2)
+    user_2 = User.where(name: user_input2)[0]
+
+    #call method from user class
+    mutual_games = user_1.same_games_as(user_2)
+
+    mutual_games.each_with_index do |game, i|
+      if i == 0
+        puts TerminalFormat.dash_border
+      end
+      puts "#{i + 1} - #{game.title} (#{game.genre}, #{game.console})"
+    end
+
+    true
   end
 
   def submain_user2
+    # Display users for a console
+    puts TerminalFormat.dash_border
+    print "Enter console:  "
+    platform = gets.chomp
+    platform = until_game_platform(platform)
+    platform_users = User.with_console_users(platform)
+    puts TerminalFormat.half_star_border
+    puts "Users for platform '#{platform}':"
+    puts TerminalFormat.dash_border
+    platform_users.each_with_index do |user, i|
+      puts "#{i + 1} - #{user.name} (#{user.age} y.o)"
+    end
+    true
   end
 
   def submain_user3
@@ -430,12 +467,19 @@ class CommandLineInterface
   end
 
   def submain_game1
+    # Game-community average age
+
+    #need to select game
+
+    instance.user_avg_age
   end
 
   def submain_game2
+    # Game-community gamer employment
   end
 
   def submain_game3
+    # Game-community gamer unemployment
   end
 
   def submain_game4
