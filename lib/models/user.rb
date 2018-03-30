@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
         end
       end
     end
-    mutual_games
+    mutual_games.uniq
 
 
 #     self_consoles = self.games.collect do |game|
