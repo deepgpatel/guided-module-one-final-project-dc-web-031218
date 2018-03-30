@@ -10,6 +10,7 @@ class CommandLineInterface
   end
 
   def iterative_execution
+    sleep(4)
     main_menu_banner
     main_commands_prompt
     input = get_user_input
@@ -447,13 +448,16 @@ class CommandLineInterface
     puts TerminalFormat.dash_border
     puts "Mutual Games for #{user_input1} and #{user_input2}"
     puts TerminalFormat.dash_border
-    mutual_games.each_with_index do |game, i|
-      if i == 0
-        puts TerminalFormat.dash_border
+    if mutual_games == []
+      puts "No games in common (console-specific)!"
+    else
+      mutual_games.each_with_index do |game, i|
+        if i == 0
+          puts TerminalFormat.dash_border
+        end
+        puts "#{i + 1} - #{game.title} (#{game.genre}, #{game.console})"
       end
-      puts "#{i + 1} - #{game.title} (#{game.genre}, #{game.console})"
     end
-
     puts TerminalFormat.full_star_border
     puts "Command 'Display games in common between two users' completed!"
     puts TerminalFormat.full_star_border
