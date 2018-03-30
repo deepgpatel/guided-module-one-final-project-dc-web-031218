@@ -45,6 +45,11 @@ class CommandLineInterface
     puts TerminalFormat.dash_border
   end
 
+  def get_user_input
+    print "Command number choice:  "
+    input = gets.chomp
+  end
+
   def until_valid_main(input)
     possible_main_commands = (1..9).to_a.collect{|n| "#{n}"}
     until possible_main_commands.include?(input)
@@ -89,6 +94,7 @@ class CommandLineInterface
     puts TerminalFormat.dash_border
     print "Is user employed? y/n:  "
     user_employed = gets.chomp.downcase
+    user_employed = until_y_n(user_employed)
     if user_employed == "y"
       user_employed = true
     elsif user_employed == "n"
@@ -192,6 +198,7 @@ class CommandLineInterface
     submain_game_commands_prompt
 
     input = get_user_input
+    submain_game_case(input)
       # use until private function
   end
 
@@ -245,11 +252,6 @@ class CommandLineInterface
     end
 
   private
-  def get_user_input
-    print "Command number choice:  "
-    input = gets.chomp
-  end
-
   def all_user_names
     User.all.collect{|user| user.name }.sort
   end
@@ -273,6 +275,23 @@ class CommandLineInterface
     input
   end
 
+  def until_y_n(input)
+    answers = ["y", "n"]
+    until answers.include?(input)
+      puts "Invalid selection."
+      puts TerminalFormat.half_star_border
+      puts "Possible selections:"
+      answers.each_with_index do |answer, i|
+        if i == 0
+          puts TerminalFormat.dash_border
+        end
+        puts "#{i+1} - #{answer}"
+      end
+      puts TerminalFormat.dash_border
+    end
+    input
+  end
+
   def all_game_titles
     Game.all.collect{|game| game.title}.sort.uniq
   end
@@ -290,7 +309,7 @@ class CommandLineInterface
         puts "#{i+1} - #{title}"
       end
       puts TerminalFormat.dash_border
-      print "Exact title of game to be removed:  "
+      print "Exact title of game:  "
       input = gets.chomp
     end
     input
@@ -299,10 +318,10 @@ class CommandLineInterface
   def until_game_platform(input)
     platforms = ["PC", "Playstation 4", "Xbox One", "Nintendo"]
     until platforms.include?(input)
+      puts TerminalFormat.half_star_border
       puts "Invalid console/platform."
       puts TerminalFormat.half_star_border
       puts "All platforms:"
-      puts TerminalFormat.dash_border
       platforms.each_with_index do |platform, i|
         if i == 0
           puts TerminalFormat.dash_border
@@ -404,7 +423,9 @@ class CommandLineInterface
   def submain_user1
     # Display games in common between two users
     #get info from user
-    puts TerminalFormat.dash_border
+    puts TerminalFormat.full_star_border
+    puts "Current task: Display games in common between two users"
+    puts TerminalFormat.full_star_border
     print "First user's name:  "
     user_input1 = gets.chomp
     user_input1 = until_user_name(user_input1)
@@ -425,12 +446,17 @@ class CommandLineInterface
       puts "#{i + 1} - #{game.title} (#{game.genre}, #{game.console})"
     end
 
+    puts TerminalFormat.half_star_border
+    puts "Command 'Display games in common between two users' completed!"
+    puts TerminalFormat.half_star_border
     true
   end
 
   def submain_user2
     # Display users for a console
-    puts TerminalFormat.dash_border
+    puts TerminalFormat.full_star_border
+    puts "Current task: Display users for a platform"
+    puts TerminalFormat.full_star_border
     print "Enter console:  "
     platform = gets.chomp
     platform = until_game_platform(platform)
@@ -439,8 +465,14 @@ class CommandLineInterface
     puts "Users for platform '#{platform}':"
     puts TerminalFormat.dash_border
     platform_users.each_with_index do |user, i|
+      if i == 0
+        puts TerminalFormat.dash_border
+      end
       puts "#{i + 1} - #{user.name} (#{user.age} y.o)"
     end
+    puts TerminalFormat.half_star_border
+    puts "Command 'Display users for a platform' completed!"
+    puts TerminalFormat.half_star_border
     true
   end
 
@@ -468,18 +500,85 @@ class CommandLineInterface
 
   def submain_game1
     # Game-community average age
-
+    puts TerminalFormat.full_star_border
+    puts "Current task: Display a game-community's average age"
+    puts TerminalFormat.full_star_border
+    print "Enter exact game title:  "
+    game_title = gets.chomp
+    game_title = until_game_title(game_title)
     #need to select game
-
-    instance.user_avg_age
+    game = Game.where(title: game_title)[0]
+    avg_age_hash = game.user_avg_age
+    puts TerminalFormat.dash_border
+    puts "Average Age Distribution (By Platform) for '#{game_title}':"
+    puts TerminalFormat.dash_border
+    avg_age_hash.each_pair do |platform, avg_age|
+      if avg_age
+        puts " - #{platform}: #{avg_age} y.o."
+      else
+        puts " - #{platform}: no user data"
+      end
+    end
+    puts TerminalFormat.half_star_border
+    puts "Command 'Display a game-community's average age' completed!"
+    puts TerminalFormat.half_star_border
+    true
   end
 
   def submain_game2
     # Game-community gamer employment
+    puts TerminalFormat.full_star_border
+    puts "Current task: Display a game-community's gamer employment"
+    puts TerminalFormat.full_star_border
+    print "Enter exact game title:  "
+    game_title = gets.chomp
+    game_title = until_game_title(game_title)
+    #need to select game
+    game = Game.where(title: game_title)[0]
+    employment_hash = game.user_employment
+    ###
+    puts TerminalFormat.dash_border
+    puts "User Employment Percentage (By Platform) for '#{game_title}':"
+    puts TerminalFormat.dash_border
+    employment_hash.each_pair do |platform, employment_percentage|
+      if employment_percentage
+        puts " - #{platform}: #{employment_percentage}"
+      else
+        puts " - #{platform}: no user data"
+      end
+    end
+    puts TerminalFormat.half_star_border
+    puts "Command 'Display a game-community's gamer employment' completed!"
+    puts TerminalFormat.half_star_border
+    true
   end
 
   def submain_game3
     # Game-community gamer unemployment
+    puts TerminalFormat.full_star_border
+    puts "Current task: Display a game-community's gamer unemployment"
+    puts TerminalFormat.full_star_border
+    print "Enter exact game title:  "
+    game_title = gets.chomp
+    game_title = until_game_title(game_title)
+    #need to select game
+    game = Game.where(title: game_title)[0]
+    unemployment_hash = game.user_unemployment
+    ###
+    puts TerminalFormat.dash_border
+    puts "User Unemployment Percentage (By Platform) for '#{game_title}':"
+    puts TerminalFormat.dash_border
+    unemployment_hash.each_pair do |platform, unemployment_percentage|
+      if unemployment_percentage
+        puts " - #{platform}: #{unemployment_percentage}"
+      else
+        puts " - #{platform}: no user data"
+      end
+    end
+    puts TerminalFormat.half_star_border
+    puts "Command 'Display a game-community's gamer unemployment' completed!"
+    puts TerminalFormat.half_star_border
+    true
   end
 
   def submain_game4
@@ -487,7 +586,11 @@ class CommandLineInterface
   end
 
   def return_to_main
+    puts TerminalFormat.full_star_border
+    puts TerminalFormat.to_mid + "Main Menu"
+    puts TerminalFormat.full_star_border
 
+    main_commands_prompt
   end
 
 end
@@ -516,6 +619,3 @@ class TerminalFormat
   end
 
 end
-
-test = CommandLineInterface.new
-#Pry.start

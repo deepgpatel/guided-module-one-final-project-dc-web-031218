@@ -16,7 +16,7 @@ class Game < ActiveRecord::Base
 
     instances_array.each do |game_on_console|
       if game_on_console # if not nil
-        game_on_console_not_nil_2_user_employment(game_on_console, output_hash)
+        game_on_console_not_nil_2_user_employment_1(game_on_console, output_hash)
       end
     end
     output_hash
@@ -24,6 +24,16 @@ class Game < ActiveRecord::Base
 
   def user_unemployment
     # inverse of #user_employment
+    output_hash = {}
+    # use private method, to add in for all consoles
+    instances_array = collect_all_instances_with_this_title
+
+    instances_array.each do |game_on_console|
+      if game_on_console # if not nil
+        game_on_console_not_nil_2_user_employment_2(game_on_console, output_hash)
+      end
+    end
+    output_hash
   end
 
   def user_avg_age
@@ -73,7 +83,7 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def game_on_console_not_nil_2_user_employment(game_on_console, hash)
+  def game_on_console_not_nil_2_user_employment_1(game_on_console, hash)
     # get employment percentages, push to hash
     users = game_on_console.users
 
@@ -89,6 +99,27 @@ class Game < ActiveRecord::Base
       employment_ratio = employed_count.to_f / users.size
       employment_percentage = employment_ratio * 100
       hash[game_on_console.console] = "#{employment_percentage} %"
+    end
+
+  end
+
+  def game_on_console_not_nil_2_user_employment_2(game_on_console, hash)
+    # get employment percentages, push to hash
+    users = game_on_console.users
+
+    employed_count = 0
+    users.each do |user|
+      if user.employed
+        employed_count += 1
+      end
+    end
+    if users.size == 0
+      hash[game_on_console.console] = nil
+    else
+      employment_ratio = employed_count.to_f / users.size
+      employment_percentage = employment_ratio * 100
+      unemployment_percentage = 100.0 - employment_percentage
+      hash[game_on_console.console] = "#{unemployment_percentage} %"
     end
 
   end
