@@ -24,4 +24,4 @@
          - a user can see what games people in their age group are playing
          - a game (aka game developer) can produce statistics on its user-base
 
-  
+**ALERT: to run program, (1) execute command "rake db:migrate && rake db:seed" from parent directory, and (2) execute "ruby bin/run.rb" from parent directory.**
